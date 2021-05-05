@@ -85,6 +85,21 @@ var message = i switch
 WriteLine(message);
 ```
 
+## Functional Syntax
+
+Different implementation for defining functions.  Book says more of an Functiona;/F# style?
+
+```C#
+static int Fib(int term) =>
+  term switch {
+    1 => 0,
+    2 => 1,
+    _ => Fib(term - 1) + Fib(term - 2)
+  };
+```
+
+Interesting style.  Seems to communicate a lot of info in a short statement.
+
 ## Iterating
 
 ```C#
@@ -138,3 +153,5 @@ catch (Exception ex) { // All exceptions!
   WriteLine($"{ex.GetType()} says {ex.Message}");
 }
 ```
+
+
