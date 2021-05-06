@@ -154,4 +154,40 @@ catch (Exception ex) { // All exceptions!
 }
 ```
 
+## Logging
 
+`Trace` is used in prod and dev, `Debug` is used in dev:
+
+```C#
+Trace.Listeners.Add(new TextWriterTraceListener(File.CreateText("log.txt")));
+Trace.AutoFlush = true; // Required to flush log on write.
+Trace.WriteLine("It did the do in prod!");
+Debug.WriteLine("It did more do in dev!");
+```
+
+## Swap Configuration
+
+Can swap to the "Release" configuration with the `dotnet run` command:
+
+```sh
+$ dotnet run --configuration Release
+```
+
+## Unit Testing
+
+Unit tests are generated with `dotnet new xunit --name <name>UnitTests`.  The name does not matter.
+
+In the `.csproj` file, create an ItemGroup to reference what you're testing.  Even on MacOS `\` is
+used.
+
+```xml
+<ItemGroup>
+  <ProjectReference Include="..\CalculatorLib\CalculatorLib.csproj" />
+</ItemGroup>
+```
+
+Run your tests with:
+
+```sh
+$ dotnet test
+```
