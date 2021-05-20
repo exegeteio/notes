@@ -192,3 +192,64 @@ Run your tests with:
 $ dotnet test
 ```
 
+## Classes
+
+### Shared Member
+
+A shared member is a `static` attribute on a class which makes the value available as a class
+variable.
+
+```c#
+public class BankAccount { public static decimal InterestRate; }
+// ...
+Console.WriteLine(BankAccount.InterestRate); // This works.
+var account = new BankAccount();
+Console.Write?Line(account.InterestRate); // Will not build!
+```
+
+### Constant Members 
+
+`const` values also cannot be accessed by via an instance, but can be used as a local property
+inside a class.
+
+**Warning:** At compile time `const` variables are replaced with their literal value.  This means that
+a library which uses your `const`, will need to be recompiled to pick up the new constant.  The book
+I'm reading suggest that constants should be avoided because of this.
+
+```c#
+public class Person {
+  public const string Species = "Homo Sapien";
+  public override string ToString() {
+    return $"This person is a {Species}"; // Works as expected.
+  }
+}
+// ...
+Console.WriteLine(Person.Species); // This works.
+var bob = new Person();
+Console.WriteLine(bob.Species); // This will not compile.
+```
+
+### Readonly Members
+
+Similar to `const`, but does not get replaced at compile time.  Can also be set by Constructors.
+
+```c#
+public readonly string Planet = "Earth";
+```
+
+### Default Values
+
+Not sure what use this is, but you can use the keyword `default` to define a value as the default
+value for its type.
+
+`DateTime` objects initialize at midnight of year one, month one, day one.
+
+```c#
+public class Thing {
+  public DateTime When;
+  public Thing() {
+    When = default;
+  }
+}
+```
+
