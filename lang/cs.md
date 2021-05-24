@@ -253,3 +253,51 @@ public class Thing {
 }
 ```
 
+### Optional Params
+
+Optional method parameters are defined with an `=` in the defenition, and must come last.
+
+```c#
+public void SayHello(greeting, name = "World!") {};
+```
+
+Optional parameters can be specified positionally or with a `:` in the message defenition.
+
+```c#
+SayHello("Howdy", "Pardner");
+SayHello("Hola", name: "Mundo");
+```
+
+### Passing Pointers (References) 
+
+References to objects can be defined in the method defenition and when calling the method.
+
+```c#
+public void SayHello(ref greeting, name = "World") {
+  greeting = "Hi!"; // Changes the value outside the method!
+  // ...
+};
+
+var greeting = "Hola";
+SayHello(ref greeting);
+Console.WriteLine(greeting); // "Hi!"
+```
+
+Can also pass a reference to a single `out` variable as well.
+
+```c#
+public void SayHello(greeting, out string message) {
+  message = $"{greeting}, World!";
+  // ...
+};
+
+var greeting = "Hola";
+string mess1;
+
+SayHello(greeting, out mess1);
+Console.WriteLine(mess1); // "Hola, World!"
+
+// C#7 shortcut to define mess2 inline.
+SayHello("Howdy", out string mess2);
+Console.WriteLine(mess2); // "Howdy, World!"
+```
