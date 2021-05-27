@@ -301,3 +301,12 @@ Console.WriteLine(mess1); // "Hola, World!"
 SayHello("Howdy", out string mess2);
 Console.WriteLine(mess2); // "Howdy, World!"
 ```
+
+### Init-only Properties
+
+Properties can be defined such that they are only assignable when being
+initialized.
+
+```c#
+public string FirstName { get; init; }
+```
