@@ -310,3 +310,17 @@ initialized.
 ```c#
 public string FirstName { get; init; }
 ```
+
+### Records - Immutable Objects ... Sort of?
+
+Records are intended to be immutable objects, but they don't actually act that way.
+
+```c#
+public record Vehicle {
+  public string Brand { get; init; }
+  public string Color { get; set; }
+}
+var car = new Vehicle { Color: "red", Brand: "Honda" };
+car.Brand = "Toyota"; // This does not work!
+car.Color = "Pink"; // This should not work if car is Immutable!
+```
