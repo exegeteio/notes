@@ -323,4 +323,23 @@ public record Vehicle {
 var car = new Vehicle { Color: "red", Brand: "Honda" };
 car.Brand = "Toyota"; // This does not work!
 car.Color = "Pink"; // This should not work if car is Immutable!
+
+// To copy/change a record.
+var repaintedCar = car with { Color: "Grey" };
 ```
+
+# Deconstructor
+
+C# classes can be "Deconstructed" by returning a list of values from the `Deconstruct` method.
+
+```c#
+public record Animal { string Name; string Species; }
+public void Deconstruct(out string name, out string species) {
+  name = Name;
+  species = Species;
+}
+
+var oscar = new ImmutableAnimal {Name: "Oscar", Species: "Labrador"};
+var (who, what) = oscar; // Calls `Deconstruct()`.
+```
+
