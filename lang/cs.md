@@ -343,3 +343,12 @@ var oscar = new ImmutableAnimal {Name: "Oscar", Species: "Labrador"};
 var (who, what) = oscar; // Calls `Deconstruct()`.
 ```
 
+# Inline null checks
+
+Can check inline for null values prior inline with something like:
+
+```c#
+// if `Shout` is not null, invoke the method with arguments.
+Shout?.Invoke(this, EventArgs.Empty);
+```
+
